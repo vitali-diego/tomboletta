@@ -1,7 +1,38 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+/* Realizzare un programma in c++ che simuli il gioco della tombola.
+Il programma dovrà avere le seguenti funzionalità:
+generare le cartelle per almeno 2 giocatori
+estrarre i numeri della tombola ad intervalli regolari
+mostrare il tabellone aggiornato
+controllare e mostrare la presenza dei numeri estratti nelle cartelle
+segnalare il vincitore che ha fatto "tombola" (estratti tutti i numeri della propria cartella)
+Le cartelle sono formate da 3 righe di 5 numeri ciascuna,  in ogni riga non possono essere presenti numeri appartenenti alla stessa decina e non possono esserci numeri ripetuti nella stessa cartella.
+La visualizzazione della cartella deve rispettare l'incolonnamento delle decine (eccezione: il numero 90 si incolonna nell'ottava decina)
 
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+Esempio cartella:
+
+
+5  15             44       65      80 
+
+--------------------------------------------
+1        23 39             62 77
+___________________________
+  10      30        55       78   90  */
 
 int main(int argc, char** argv) {
+	int x[]{},i=0,y=89;
+	srand(time(NULL));
+	// rand dei numeri della tombola
+	rand() % y + 1;
+	while (i<90){
+	rand() % y + 1;
+	
+	}
+	
 	return 0;
 }
+//{}
