@@ -1,0 +1,213 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+/* Realizzare un programma in c++ che simuli il gioco della tombola.
+Il programma dovrà avere le seguenti funzionalità:
+generare le cartelle per almeno 2 giocatori
+estrarre i numeri della tombola ad intervalli regolari
+mostrare il tabellone aggiornato
+controllare e mostrare la presenza dei numeri estratti nelle cartelle
+segnalare il vincitore che ha fatto "tombola" (estratti tutti i numeri della propria cartella)
+Le cartelle sono formate da 3 righe di 5 numeri ciascuna,  in ogni riga non possono essere presenti numeri appartenenti alla stessa decina e non possono esserci numeri ripetuti nella stessa cartella.
+La visualizzazione della cartella deve rispettare l'incolonnamento delle decine (eccezione: il numero 90 si incolonna nell'ottava decina)
+
+
+Esempio cartella:
+
+
+5  15             44       65      80 
+
+--------------------------------------------
+1       23 39              62 77
+___________________________
+  10      30        55       78   90  */
+
+int main(int argc, char** argv) {
+	int x[]{},z[15],i=0,y=89,ap,o=0,w,p;
+	srand(time(NULL));
+	while (i<90){
+	    while (i<10){
+	        cout<<" ";
+	        break;
+	    }
+	    if (i%5==0){
+	        cout<<" * ";
+	    }
+	     if (i%10==0){
+	        cout<<endl;
+	    }
+	    
+	    if (i%30==0){
+	       //ap = appoggio
+	       ap=i;
+	       i=0;
+	       while(i<35){
+	           cout<<"*";
+	           i++;
+	       }
+	       cout<<endl;
+	       i=ap;
+	    }
+	    i++;
+	    cout<<" "<<i;
+	    if (i==90){
+	        cout<<" *";
+	        cout<<endl;
+	         //ap = appoggio
+	       ap=i;
+	       i=0;
+	       while(i<35){
+	           cout<<"*";
+	           i++;
+	       }
+	       cout<<endl;
+	       i=ap;
+	}
+	}
+	i=0;
+	while (i<15){
+	    z[i] = rand() % y + 1;
+	    cout<<z[i]<<"   ";
+        i++;
+        }
+    i=0;
+    while (i<15){
+       
+        if (i==o) 
+            o++;
+        if(z[i]==z[o]){
+            w=o;
+            o=0;
+            while (o<15){
+                if (i==o) 
+                o++;
+                if(z[i]==z[o]){
+	                z[i] = rand() % y + 1;
+                    p++;
+                }
+                o++;
+                if (p>0){
+                o=0;
+                p=0;
+                }
+	        
+            }
+        o=w;
+        }
+	    else
+	        if (o!=15)
+	            o++;
+	    if(o==15){
+	        i++;
+            o=0;
+	        } 
+	        if (i==14&&o==16)
+                break;
+          //  cout<<" "<<o;
+    }  
+            i=0;
+	        cout<<" i numeri nuovi sono:";
+	       while (i<15){
+	       cout<<"  "<<z[i]<<"  ";
+	       i++;
+	       }
+
+	// rand dei numeri della tombola
+	
+	return 0;
+} /*
+//{}  #include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+int main(int argc, char** argv) {
+	int x[]{},z[15],e=1,i=0,y=89,ap,o=0,w,p,AP=0,l[9];
+	while (i<15){
+	    z[i] = rand() % y + 1;
+	    cout<<z[i]<<"   ";
+        i++;
+        }
+    i=0;
+    while (i<15){
+       
+        if (i==o) 
+            o++;
+            
+        if(z[i]==z[o]){
+            w=o;
+            o=0;
+            while (o<15){
+                if (i==o) 
+                o++;
+                if(z[i]==z[o]){
+	                z[i] = rand() % y + 1;
+                    p++;
+                }
+                /*
+                while (AP<15){
+                    cout<<"daiuh";
+                    if (e<z[i]&&z[i]<e+8){
+                        l[i]++;
+                        
+                        if (l[i]>=3){
+                            
+                            while (z[i]<e||z[i]>e+8){
+                            z[i] = rand() % y + 1;
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                    else
+                    e=e+9;
+                    
+                }
+                */
+        /*        o++;
+                if (p>0){
+                    o=0;
+                    p=0;
+                }
+                
+            }
+            
+        o=w;
+        }
+	    else
+	        if (o!=15)
+	            o++;
+	    if(o==15){
+	        i++;
+            o=0;
+	        } 
+	        if (i==14&&o==16)
+                break;
+    }  
+    while (AP<15){
+        cout<<"daiuh";
+        if (e<z[i]&&z[i]<e+8){
+            l[i]++; 
+            
+            if (l[i]>=3){
+            
+                while (z[i]<e||z[i]>e+8){
+                z[i] = rand() % y + 1;
+                }
+            }
+            
+            AP++;
+            
+        }
+        
+    }
+    i=0;
+	cout<<" i numeri nuovi sono:";
+	  while (i<15){
+	   cout<<"  "<<z[i]<<"  ";
+	   i++;
+	       }
+	   return 0;
+//{}
+} 
