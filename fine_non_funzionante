@@ -374,3 +374,7 @@ int main(int argc, char** argv) {
 	return 0;
 } 
 //{}
+// alla fine non avendo finito il codice, avrei fatto una matrice per le due caselle del utente, e dopo aver adeguato tutti i cicli con le matrici avrei avuto un tabellone, due chede per il giocatore, avrei messo o riutilizzato rant per l' estrazione della tombola,
+// ad ogni numero estratto avrei usato la funzione per aggiornare la pagina marcando o evidenziando i numeri estratti sia sul tabellone che sulle schede del giocatore.
+//per la tombola avrei messo un ciclo con un if che quando una delle due schede era completa usciva un commento che annunciava la fine del gioco, ma avrei dichiarato due stringhe cosi da chiedere al giocatore se volesse continuare l'estrazione fino alla tombola 
+// dell'altra scheda, anche per le cinquine o ambo avrei fatto un controllo delle caselle per ogni numero estratto.
