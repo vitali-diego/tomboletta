@@ -1,0 +1,396 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+/* Realizzare un programma in c++ che simuli il gioco della tombola.
+Il programma dovrà avere le seguenti funzionalità:
+generare le cartelle per almeno 2 giocatori
+estrarre i numeri della tombola ad intervalli regolari
+mostrare il tabellone aggiornato
+controllare e mostrare la presenza dei numeri estratti nelle cartelle
+segnalare il vincitore che ha fatto "tombola" (estratti tutti i numeri della propria cartella)
+Le cartelle sono formate da 3 righe di 5 numeri ciascuna,  in ogni riga non possono essere presenti numeri appartenenti alla stessa decina e non possono esserci numeri ripetuti nella stessa cartella.
+La visualizzazione della cartella deve rispettare l'incolonnamento delle decine (eccezione: il numero 90 si incolonna nell'ottava decina)
+
+
+Esempio cartella:
+ 
+
+5  15             44       65      80 
+
+--------------------------------------------
+1       23 39              62 77
+___________________________
+  10      30        55       78   90  */
+
+int main(int argc, char** argv) {
+	int x[]{},z[15],i=0,y=90,ap,o=0,w,p,v[15],c,k=0,p1[10],n1,n2[10],n3=0;
+	srand(time(NULL));
+	while (i<90){
+	    while (i<10){
+	        cout<<" ";
+	        break;
+	    }
+	    if (i%5==0){
+	        cout<<" | ";
+	    }
+	     if (i%10==0){
+	        cout<<endl;
+	    }
+	    
+	    if (i%30==0){
+	       //ap = appoggio
+	       ap=i;
+	       i=0;
+	       while(i<35){
+	           cout<<"-";
+	           i++;
+	       }
+	       cout<<endl;
+	       i=ap;
+	    }
+	    i++;
+	    cout<<" "<<i;
+	    if (i==90){
+	        cout<<" |";
+	        cout<<endl;
+	         //ap = appoggio
+	       ap=i;
+	       i=0;
+	       while(i<35){
+	           cout<<"-";
+	           i++;
+	       }
+	       cout<<endl;
+	       i=ap;
+	}
+	}
+	i=0;
+	o=1;
+	while (i<15){
+	    z[i] = rand() % y + 1;
+	    cout<<z[i]<<"   ";
+	    v[i] = z[i]/10;
+        v[i]++;
+        if (i == 0){
+        	if (v[i] == 10)
+        		v[i] = 9;
+        	if (v[i] >= o && v[i] <= o+8)
+        		p1[i] = v[i];
+		}
+        if (i>0){
+        	if (v[i] == 10)
+        		v[i] = 9;
+			if (v[i] >= o && v[i] <= o+9)
+				p1[i] = v[i];
+		}
+		o = o+10;
+        i++;
+        }
+    i=0;
+    while (i<15){
+       
+        if (i==o) 
+            o++;
+        if(z[i]==z[o]){
+            w=o;
+            o=0;
+            while (o<15){
+                if (i==o) 
+                o++;
+                if(z[i]==z[o]){
+	                z[i] = rand() % y + 1;
+                    p++;
+                }
+                o++;
+                if (p>0){
+                o=0;
+                p=0;
+                }
+	        
+            }
+        o=w;
+        }
+	    else
+	        if (o!=15)
+	            o++;
+	    if(o==15){
+	        i++;
+            o=0;
+	        } 
+	        if (i==14&&o==16)
+                break;
+          //  cout<<" "<<o;
+    }  
+            
+            i=0;
+	        cout<<"\n i numeri nuovi sono:"<<endl;
+	       while (i<15){
+	       cout<<"  "<<z[i]<<"  ";
+	       i++;
+	       }
+	       i=0;
+	while (i<15){
+        v[i] = z[i]/10;
+        v[i]++;
+        if (v[i] == 10)
+        v[i] = 9;
+        cout<<"q  "<<v[i]<<" ";
+        i++;
+    }
+ /*   i=0;
+    o=0;
+    while (i<15){
+        if (v[i] >= o + 1 && v[i] <= o + 9){
+            p1[i]++;
+            
+        }
+        else
+        o = o+10;
+        if (p1[i]>=3){
+            z[i] = rand() % y + 1;
+            
+        }
+    i++;
+    } */
+    i=0; 
+    cout<<"\nle posizioni sono"<<endl;;
+    while (i<15){
+        cout<<"   "<<v[i];
+        i++;
+    }
+ 
+    
+    //riordino i numeri
+    i=0;
+    o=0;
+    while (i<15){
+        if(i==o)
+            o++;
+        if(o<15&&z[i]>z[o]) {
+            c = z[i];
+            z[i] = z[o];
+            z[o] = c;
+            o=0;
+        }
+        else
+        o++;
+        if(o>=15){
+            i++;
+            o=0;
+        }
+    }
+    cout<<"\n le nuove posizioni dei numeri sono "<<endl;
+    i=0;
+    while (i<15){
+        cout<<"   "<<z[i];
+        i++;
+    }
+    i=0;
+    o=0;
+    while (i<15){
+        if(i==o)
+            o++;
+        if(o<15&&v[i]>v[o]) {
+            c = v[i];
+            v[i] = v[o];
+            v[o] = c;
+            o=0;
+        }
+        else
+        o++;
+        if(o>=15){
+            i++;
+            o=0;
+        }
+    } 
+    cout<<"\n le nuove posizioni  sono "<<endl;
+     i=0;
+    while (i<15){
+        cout<<"   "<<v[i];
+        i++;
+    } 
+    cout<<endl;
+ /*   i = 14;  
+    o = 8;   
+    while (i >= 2 && o >= 0) {
+        
+    if (v[i] >= 1 && v[i] <= 9) {
+        // Se i 3 numeri sono uguali, assegna 3 (completo)
+            if (v[i] == v[i-1] && v[i] == v[i-2]) {
+                p1[o] = 3;  // Sono al completo
+            }
+        // Se solo due numeri sono uguali, assegna 2 (ancora spazio)
+            else if (v[i] == v[i-1]) {
+                p1[o] = 2;  // C'è ancora spazio
+            }
+        // Se non sono uguali, assegna 1
+            else {
+                p1[o] = 1;  // C'è ancora spazio
+            }
+        }
+        else {
+            p1[o] = 0;  // Se v[i] non è tra 1 e 9, assegna 0
+        }
+
+    // Stampa per il debug
+        cout << "Nella posizione " << o + 1 << " ci sono " << p1[o] << " numeri" << endl;
+
+    // Decrementa solo l'indice `i`, in modo da scorrere verso sinistra nell'array
+        i--;
+    
+    // Decrementa `o` solo quando abbiamo finito di elaborare tutte le posizioni nella colonna
+        if (i == o + 1) {
+            o--;
+        }
+    }
+    */
+    cout<<"nuovo";
+/*    n3 = 0;
+    n2[n3] = 0;
+    n1 = 1;
+    while (n1 != 0){
+        o = 0;
+        i=14;
+        while (i>=3){
+            if (v[i] == v[i-1] && v[i] == v[i-2] && v[i] == v[i-3]){
+                while (n2[n3] == v[i]){
+                    z[i] = rand() % y + 1;
+                    v[i] = z[i]/10;
+                    v[i]++;
+                } 
+                while (v[i] == v[i-3]){
+                    cout<<"loop";
+                    z[i-3] = rand() % y + 1;
+                    v[i-3] = z[i]/10;
+                    v[i-3]++;
+                    n2[n3] = v[i];
+                    if (v[i] != v[i-3])
+                    break;
+                    if (v[i] != v[i-3])
+                    n3++; 
+                    
+                } 
+                if (n2[n3] == v[i])
+                     n3++;
+                    i--;
+                if  (v[i] == 10)
+                    v[i] = 9;
+                
+                i=o;
+                o++;
+                i=14;
+            }
+            else
+            i--;
+            
+            
+        }
+    if (o==0)
+       n1 = 0;
+    } */
+    cout<<endl;
+    i=0;
+    o=0;
+    while (i<15){
+        if(i==o)
+            o++;
+        if(o<15&&v[i]>v[o]) {
+            c = v[i];
+            v[i] = v[o];
+            v[o] = c;
+            o=0;
+        }
+        else
+        o++;
+        if(o>=15){
+            i++;
+            o=0;
+        }
+    } 
+    
+    i=0;
+    while (i<15){
+        cout<<"   "<<v[i];
+        i++;
+    } 
+    cout<<endl;
+    i--;
+    cout<<"--------------------"<<endl;
+    o=0;
+  /*  while (i>0){
+        cout<<"| "<<z[i]<<" ";
+        while (i<15){
+        	if (v[i-1]==v[i]){
+            	o=i;
+            	i--;
+        	}
+        	else
+        		break;
+        	i--;
+        }
+        i--;
+    } */
+  /*  while (i>0){
+        cout<<"| "<<z[i]<<" ";
+        while (true){
+            if (v[i-1]==v[i]){
+                v[i-1] = 10+k;
+                k++;
+                o=i;
+             
+            }
+            else
+                break;
+            
+         //	cout<<"\n i: "<<i;
+        }
+        while (v[i] == v[i+1]){
+		i++;
+		}
+        if (v[i] != v[i+1]+1){
+			cout<<"|    ";
+			}
+        i--;
+    } */
+    // i = 14
+    
+      i=10;
+        while (true){
+            if (i<10){
+                if (v[i] >= 1 && v[i] <= 9)
+                    cout<<"|    ";
+                else
+                    cout<<"| "<<z[i]<<" ";
+                i--;
+            }
+            if (i == 0){
+                cout<<endl;
+                i = 15;
+            }
+            if (i>10){
+                if (v[i] >= 1 && v[i] <= 9)
+                    cout<<"|    ";
+                else
+                    cout<<"| "<<z[i]<<" ";
+                i--;
+                if (i == 10)
+                break;
+            }
+        }
+    
+
+    i=0;
+    cout<<endl;
+	while (i<15){
+        cout<<"   "<<v[i];
+        i++;
+    }
+	
+	return 0;
+} 
+//{}
+// alla fine non avendo finito il codice, avrei fatto una matrice per le due caselle del utente, e dopo aver adeguato tutti i cicli con le matrici avrei avuto un tabellone, due chede per il giocatore, avrei messo o riutilizzato rant per l' estrazione della tombola,
+// ad ogni numero estratto avrei usato la funzione per aggiornare la pagina marcando o evidenziando i numeri estratti sia sul tabellone che sulle schede del giocatore.
+//per la tombola avrei messo un ciclo con un if che quando una delle due schede era completa usciva un commento che annunciava la fine del gioco, ma avrei dichiarato due stringhe cosi da chiedere al giocatore se volesse continuare l'estrazione fino alla tombola 
+// dell'altra scheda, anche per le cinquine o ambo avrei fatto un controllo delle caselle per ogni numero estratto.
